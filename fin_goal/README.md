@@ -1,4 +1,4 @@
-# finlit
+# fin_goal
 
 A new Flutter project.
 
