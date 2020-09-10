@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "697835447364",
+    "firebase_url": "https://fingoal-cf2b6.firebaseio.com",
+    "project_id": "fingoal-cf2b6",
+    "storage_bucket": "fingoal-cf2b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:697835447364:android:e6a4961201c79d614cc811",
+        "android_client_info": {
+          "package_name": "com.example.fin_goal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "697835447364-esbuauogtke8lbskoef4h5490gm2qbpg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhAnR6_PuHo-YJHwkJqlvHpaDsCng-jgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "697835447364-esbuauogtke8lbskoef4h5490gm2qbpg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
