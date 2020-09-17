@@ -10,7 +10,7 @@ void main() async {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
         primaryColor: Colors.blue,
         accentColor: Colors.orange),
     home: MyApp(),
