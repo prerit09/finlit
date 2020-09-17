@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -22,13 +23,19 @@ class _MyAppState extends State<MyApp> {
   List todos = List();
   String input = "";
 
-  @override
-  void initState() {
-    super.initState();
-    todos.add("Income1");
-    todos.add("Income2");
-    todos.add("Income3");
-    todos.add("Income4");
+  createTodos(){
+    DocumentReference documentReference = FirebaseFirestore.instance.collection("MyTodos").doc(input);
+
+    //Map
+    Map<String, String> todos = {
+      "todosTitle": input
+    };
+
+    documentReference.set(todos).whenComplete(() => print ("$input created"));
+  }
+
+  deleteTodos(){
+
   }
 
   @override
@@ -55,9 +62,8 @@ class _MyAppState extends State<MyApp> {
             actions: <Widget>[
               FlatButton(
                 onPressed: (){
-                setState(() {
-                  todos.add(input);
-                });
+                createTodos();
+        
                 Navigator.of(context).pop();
               },
               child: Text("Add"))
@@ -71,33 +77,38 @@ class _MyAppState extends State<MyApp> {
     ),
   ),
   
-  body: ListView.builder(
-    itemCount: todos.length ,
-    itemBuilder: (BuildContext context, int index){
-      return Dismissible
-      (key: Key(
-        todos[index]), 
-        child: Card(
-          elevation: 4,
-          margin: EdgeInsets.all(8),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8)
-        ),
-        child: ListTile(
-          title: Text(todos[index]),
-          trailing: IconButton(
-            icon: Icon(
-              Icons.delete,
-              color: Colors.red,
-              ), 
-              onPressed: () {
-                setState(() {
+  body: StreamBuilder(stream: FirebaseFirestore.instance.collection("MyTodos").snapshots(), builder: (context, snapshots){
+        return ListView.builder(
+              shrinkWrap: true,
+              itemCount: snapshots.data.documents.length ,
+              itemBuilder: (context, index){
+                DocumentSnapshot documentSnapshot = snapshots.data.documents[index];
+                
+                return Dismissible
+                (key: Key(
+                  index.toString()), 
+                  child: Card(
+                    elevation: 4,
+                    margin: EdgeInsets.all(8),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)
+                  ),
+                  child: ListTile(
+                    title: Text(documentSnapshot.data()["todoTitle"]),
+                    trailing: IconButton(
+                      icon: Icon(
+                        Icons.delete,
+                        color: Colors.red,
+                        ), 
+                  onPressed: () {
+                    setState(() {
                   todos.removeAt(index);
                 });
               }),
-      ),
-      ));
-  })
+            ),
+          ));
+        }) ;
+      })
     );
   }
 }
