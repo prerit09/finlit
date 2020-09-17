@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
 
     //Map
     Map<String, String> todos = {
-      "todosTitle": input
+      "todoTitle": input
     };
 
     documentReference.set(todos).whenComplete(() => print ("$input created"));
