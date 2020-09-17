@@ -88,10 +88,10 @@ class _MyAppState extends State<MyApp> {
             if (snapshots.hasData) {
               return ListView.builder(
                   shrinkWrap: true,
-                  itemCount: snapshots.data().documents.length,
+                  itemCount: snapshots.data.documents.length,
                   itemBuilder: (context, index) {
                     DocumentSnapshot documentSnapshot =
-                        snapshots.data().documents[index];
+                        snapshots.data.documents[index];
                     return Dismissible(
                         onDismissed: (direction) {
                           deleteTodos(documentSnapshot.data()["todoTitle"]);
